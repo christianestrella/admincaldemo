@@ -1,0 +1,3 @@
+class TipoGasto < ActiveRecord::Base
+  attr_accessible :description, :name
+end
