@@ -39,3 +39,6 @@ gem 'jquery-rails'
 
 # Use ActiveAdmin
 gem 'activeadmin'
+
+# Dynamic Attributes
+gem 'dynamic_attributes'

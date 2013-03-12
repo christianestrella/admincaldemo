@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130309155727) do
+ActiveRecord::Schema.define(:version => 20130311192701) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,7 +46,27 @@ ActiveRecord::Schema.define(:version => 20130309155727) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "campo_dinamicos", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "value_type"
+    t.string   "input_type"
+    t.string   "default_value"
+    t.integer  "tipo_evento_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "campo_dinamicos", ["tipo_evento_id"], :name => "index_campo_dinamicos_on_tipo_evento_id"
+
   create_table "forma_pagos", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "tipo_eventos", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  :null => false

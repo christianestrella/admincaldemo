@@ -1,0 +1,32 @@
+<%= semantic_form_for [:admin, @tipo_evento] do |f| %>
+    <%= f.inputs t('Details') do %>
+		<%= f.input :name %>
+		<%= f.input :description %>
+    <% end%>
+    
+    
+    <%= f.inputs t('Dynamic fields') do %>
+    	<% @tipo_evento.campo_dinamicos.each do |h| %>
+    		<% if h.input_type == 'input' %>
+    			<% if h.value_type == 'string' %>
+		    		<ol>
+						<li class="string input optional stringish" id="tipo_evento_dynamic_fields_<%= h.name %>_input">
+							<label class="label" for="tipo_evento_dynamic_fields_<%= h.name %>"><%= h.description %></label>
+							<input style="width: 300px" id="tipo_evento_dynamic_fields_<%= h.name %>" name="tipo_evento[campo_dinamicos][<%= h.name %>]" type="text" value="<%= h.default_value %>">
+						</li>
+					</ol>
+				<% end %>
+	    		<% if h.value_type == 'integer' %>
+		    		<ol>
+						<li class="string input optional stringish" id="tipo_evento_dynamic_fields_<%= h.name %>_input">
+							<label class="label" for="tipo_evento_dynamic_fields_<%= h.name %>"><%= h.description %></label>
+							<input style="width: 50px" id="tipo_evento_dynamic_fields_<%= h.name %>" name="tipo_evento[campo_dinamicos][<%= h.name %>]" type="text" value="<%= h.default_value %>">
+						</li>
+					</ol>
+				<% end %>
+			<% end %>
+    	<% end %>
+    <% end %>
+    
+    <%= f.actions :submit %>
+ <% end %>

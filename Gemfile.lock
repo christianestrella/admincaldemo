@@ -60,6 +60,7 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
+    dynamic_attributes (1.2.0)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -156,6 +157,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin
   coffee-rails (~> 3.2.1)
+  dynamic_attributes
   jquery-rails
   rails (= 3.2.12)
   sass-rails (~> 3.2.3)
