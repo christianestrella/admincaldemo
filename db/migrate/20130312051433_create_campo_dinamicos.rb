@@ -3,9 +3,9 @@ class CreateCampoDinamicos < ActiveRecord::Migration
     create_table :campo_dinamicos do |t|
       t.string :name
       t.text :description
-      t.string :value_type
+      t.text :value
       t.string :input_type
-      t.string :default_value
+      t.string :value_type
       t.belongs_to :tipo_evento
 
       t.timestamps

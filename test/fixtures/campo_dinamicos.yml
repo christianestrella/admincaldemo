@@ -3,15 +3,15 @@
 one:
   name: MyString
   description: MyText
-  value_type: MyString
+  value: MyText
   input_type: MyString
-  default_value: MyString
+  value_type: MyString
   tipo_evento: 
 
 two:
   name: MyString
   description: MyText
-  value_type: MyString
+  value: MyText
   input_type: MyString
-  default_value: MyString
+  value_type: MyString
   tipo_evento: 
