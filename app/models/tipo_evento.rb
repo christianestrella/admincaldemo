@@ -1,4 +1,6 @@
 class TipoEvento < ActiveRecord::Base
-  has_many :campo_dinamicos
-  attr_accessible :campo_dinamicos, :description, :name
+  validates :name, :presence => true
+  
+  has_many :formulario_dinamico_evento
+  attr_accessible :description, :name
 end

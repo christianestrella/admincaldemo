@@ -4,14 +4,10 @@ one:
   name: MyString
   description: MyText
   value: MyText
-  input_type: MyString
-  value_type: MyString
-  tipo_evento: 
+  dispensable: false
 
 two:
   name: MyString
   description: MyText
   value: MyText
-  input_type: MyString
-  value_type: MyString
-  tipo_evento: 
+  dispensable: false

@@ -4,23 +4,42 @@
 		<%= f.input :description %>
     <% end%>
     
-    
     <%= f.inputs t('Dynamic fields') do %>
-    	<% @tipo_evento.campo_dinamicos.each do |h| %>
-    		<% if h.input_type == 'input' %>
-    			<% if h.value_type == 'string' %>
+    	<div>
+    		<label>Add new field</label>
+    		<br />
+    		<div
+    			<label>Type</label>
+    			<select>
+    				<option style="background: url('<%= asset_path 'ui-text-area.png' %>'); no-repeat; padding-left: 20px;">Input Text</option>
+    				<option style="background: url('<%= asset_path 'ui-text-area.png' %>'); no-repeat; padding-left: 20px;">Textearea</option>
+    				<option>Checkbox</option>
+    				<option>Combo box</option>
+    			</select>
+    			<button>Add</button>
+    		</div>
+    	</div>
+    	<div style="float:right; margin-right: 10px; border: 1px solid gray; width: 100px">
+    		<span style="cursor: pointer; background: url('<%= asset_path 'ui-text-field.png' %>'); display: block; width: 16px; height: 16px; margin: 0 auto;"></span><br />
+    		<span style="cursor: pointer; margin-top: 20px; background: url('<%= asset_path 'ui-text-area.png' %>'); display: block; width: 16px; height: 16px; margin: 0 auto;"></span><br />
+    		<span style="cursor: pointer; margin-top: 20px; background: url('<%= asset_path 'ui-combo-box.png' %>'); display: block; width: 16px; height: 16px; margin: 0 auto;"></span><br />
+	    	<span style="cursor: pointer; margin-top: 20px; background: url('<%= asset_path 'ui-check-box.png' %>'); display: block; width: 16px; height: 16px; margin: 0 auto;"></span><br />
+	    </div>
+	    <% @tipo_evento.formulario_dinamico_evento.each do |h| %>
+    		<% if h.tipo_campo_dinamico.input_type == 'text' %>
+    			<% if h.tipo_campo_dinamico.data_type == 'string' %>
 		    		<ol>
-						<li class="string input optional stringish" id="tipo_evento_dynamic_fields_<%= h.name %>_input">
-							<label class="label" for="tipo_evento_dynamic_fields_<%= h.name %>"><%= h.description %></label>
-							<input style="width: 300px" id="tipo_evento_dynamic_fields_<%= h.name %>" name="tipo_evento[campo_dinamicos][<%= h.name %>]" type="text" value="<%= h.default_value %>">
+						<li class="string input optional stringish" id="tipo_evento_dynamic_fields_<%= h.tipo_campo_dinamico.name %>_input">
+							<label class="label" for="tipo_evento_dynamic_fields_<%= h.tipo_campo_dinamico.name %>"><%= h.tipo_campo_dinamico.description %></label>
+							<input style="width: 300px" id="tipo_evento_dynamic_fields_<%= h.tipo_campo_dinamico.name %>" name="tipo_evento[campo_dinamicos][<%= h.tipo_campo_dinamico.name %>]" type="text" value="<%= h.tipo_campo_dinamico.value %>">
 						</li>
 					</ol>
 				<% end %>
-	    		<% if h.value_type == 'integer' %>
+	    		<% if h.tipo_campo_dinamico.data_type == 'integer' %>
 		    		<ol>
-						<li class="string input optional stringish" id="tipo_evento_dynamic_fields_<%= h.name %>_input">
-							<label class="label" for="tipo_evento_dynamic_fields_<%= h.name %>"><%= h.description %></label>
-							<input style="width: 50px" id="tipo_evento_dynamic_fields_<%= h.name %>" name="tipo_evento[campo_dinamicos][<%= h.name %>]" type="text" value="<%= h.default_value %>">
+						<li class="string input optional stringish" id="tipo_evento_dynamic_fields_<%= h.tipo_campo_dinamico.name %>_input">
+							<label class="label" for="tipo_evento_dynamic_fields_<%= h.tipo_campo_dinamico.name %>"><%= h.tipo_campo_dinamico.description %></label>
+							<input style="width: 50px" id="tipo_evento_dynamic_fields_<%= h.tipo_campo_dinamico.name %>" name="tipo_evento[campo_dinamicos][<%= h.tipo_campo_dinamico.name %>]" type="text" value="<%= h.tipo_campo_dinamico.value %>">
 						</li>
 					</ol>
 				<% end %>
