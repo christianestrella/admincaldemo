@@ -5,26 +5,37 @@
     <% end%>
     
     <%= f.inputs t('Dynamic fields') do %>
-    	<div>
-    		<label>Add new field</label>
-    		<br />
-    		<div
-    			<label>Type</label>
-    			<select>
-    				<option style="background: url('<%= asset_path 'ui-text-area.png' %>'); no-repeat; padding-left: 20px;">Input Text</option>
-    				<option style="background: url('<%= asset_path 'ui-text-area.png' %>'); no-repeat; padding-left: 20px;">Textearea</option>
-    				<option>Checkbox</option>
-    				<option>Combo box</option>
-    			</select>
-    			<button>Add</button>
-    		</div>
-    	</div>
-    	<div style="float:right; margin-right: 10px; border: 1px solid gray; width: 100px">
-    		<span style="cursor: pointer; background: url('<%= asset_path 'ui-text-field.png' %>'); display: block; width: 16px; height: 16px; margin: 0 auto;"></span><br />
-    		<span style="cursor: pointer; margin-top: 20px; background: url('<%= asset_path 'ui-text-area.png' %>'); display: block; width: 16px; height: 16px; margin: 0 auto;"></span><br />
-    		<span style="cursor: pointer; margin-top: 20px; background: url('<%= asset_path 'ui-combo-box.png' %>'); display: block; width: 16px; height: 16px; margin: 0 auto;"></span><br />
-	    	<span style="cursor: pointer; margin-top: 20px; background: url('<%= asset_path 'ui-check-box.png' %>'); display: block; width: 16px; height: 16px; margin: 0 auto;"></span><br />
-	    </div>
+		<div style="padding-left: 10px">
+			<button id="add_text_field" class="alt_button-style-1">
+				<img src="<%= asset_path 'ui-text-field.png' %>" />
+				&nbsp;<%= t('Text field') %>
+			</button>
+			<button id="add_text_area" class="alt_button-style-1">
+				<img src="<%= asset_path 'ui-text-area.png' %>" />
+				&nbsp;<%= t('Text Area') %>
+			</button>
+			<button id="add_combox_box" class="alt_button-style-1">
+				<img src="<%= asset_path 'ui-combo-box.png' %>" />
+				&nbsp;<%= t('Combo box') %>
+			</button>
+			<button id="add_check_box" class="alt_button-style-1">
+				<img src="<%= asset_path 'ui-check-box.png' %>" />
+				&nbsp;<%= t('Check box') %>
+			</button>
+		</div>
+		
+		<br />
+		
+		<ol id="dynamic_forms_place_1">
+					
+		</ol>
+		
+		<br />
+		
+		<ol id="dynamic_forms_place_2">
+			
+		</ol>
+		
 	    <% @tipo_evento.formulario_dinamico_evento.each do |h| %>
     		<% if h.tipo_campo_dinamico.input_type == 'text' %>
     			<% if h.tipo_campo_dinamico.data_type == 'string' %>
@@ -49,3 +60,37 @@
     
     <%= f.actions :submit %>
  <% end %>
+ 
+<script type="text/javascript">
+$(function() {
+	window.t = function(key, default_value) {
+		if (!key) {
+			return key;
+		}
+
+		var keys = key.split(".");
+		var comp = <%= current_translations.to_json.html_safe %>;
+		$(keys).each(function(_, value) {
+			if (comp) {
+				comp = comp[value];
+			}
+		});
+
+		if (!comp && console) {
+			console.debug("No translation found for key: " + key);
+			
+			if (default_value != null) {
+				return default_value;
+			} else {
+				return key;
+			}
+		}
+
+		return comp;
+	};
+}); 
+</script>
+
+<%= javascript_include_tag "/javascripts/fallr-methods-1.3" %> 
+<%= javascript_include_tag "/javascripts/tipo_eventos_actions" %>
+<%= stylesheet_link_tag "/stylesheets/buttons" %>

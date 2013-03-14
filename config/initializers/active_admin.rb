@@ -92,7 +92,7 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  # config.root_to = 'dashboard#index'
+  #config.root_to = 'dashboard#index'
 
   # == Admin Comments
   #
@@ -124,6 +124,16 @@ ActiveAdmin.setup do |config|
   # Active Admin resources and pages from here.
   #
   # config.before_filter :do_something_awesome
+  
+  config.before_filter do
+    
+    # Sirve para especificar el idioma actual (necesario para javascripts externos)
+    def current_translations
+      @translations ||= I18n.backend.send(:translations)
+      @translations[I18n.locale].with_indifferent_access
+    end
+    
+  end
 
 
   # == Register Stylesheets & Javascripts
@@ -134,13 +144,18 @@ ActiveAdmin.setup do |config|
   #
   # To load a stylesheet:
   #   config.register_stylesheet 'my_stylesheet.css'
+  
+  config.register_stylesheet 'jquery-fallr-1.3.css'
 
   # You can provide an options hash for more control, which is passed along to stylesheet_link_tag():
   #   config.register_stylesheet 'my_print_stylesheet.css', :media => :print
   #
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
-
+  
+  config.register_javascript 'jquery-1.9.1.min.js'
+  config.register_javascript 'jquery.easing.1.3.js'
+  config.register_javascript 'jquery-fallr-1.3.js'
 
   # == CSV options
   #

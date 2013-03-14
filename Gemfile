@@ -41,4 +41,10 @@ gem 'jquery-rails'
 gem 'activeadmin'
 
 # Dynamic Attributes
-gem 'dynamic_attributes'
+#gem 'dynamic_attributes'
+
+# Thin server
+gem 'thin'
+
+# Translations JS
+gem 'i18n-js'
